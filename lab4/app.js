@@ -11,6 +11,10 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended : true}))
 app.use(bodyParser.json());
 session = [];
+async function hash(password) {
+    return await bcrypt.hash(password, 7);
+}
+
 async function connect()
 {
     await client.connect();
@@ -45,13 +49,7 @@ app.post('/register', async (req, res) =>
         res.sendFile(`${__dirname}/public/error.html`);
         return ;
     }
-    let hashed;
-    bcrypt.hash(req.body.password, 7, (err, res)=>
-    {
-        hashed = res;
-    }
-    
-    )
+    let hashed = await hash(req.body.password);
     let user = await app.db.collection("users").findOne({username:req.body.username});
     let mail = await app.db.collection("users").findOne({email:req.body.email});
     if (mail || user)
@@ -84,15 +82,12 @@ app.post('/login', async (req, res) =>
     let user = await app.db.collection("users").findOne({username:req.body.username});
     if (user)
     {
-        let s = true;
-        bcrypt.compare(user.password, req.body.password, (err, same)=>
-        {
-            s = same;
-        }
-        );
-        if (!s)
+        let compare = await bcrypt.compare(req.body.password, user.password);
+        //console.log(user.password, hashed, req.body.password);
+        if (!compare)
         {
             res.sendFile(`${__dirname}/public/error.html`);
+            return ;
         }
      //   console.log(req.body.username);
       //  console.log(user);
