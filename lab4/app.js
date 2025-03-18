@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const { v4: ud } = require('uuid');
-
+const bcrypt = require('bcrypt');
 const client = new MongoClient("mongodb://localhost:27017")
 const app = express();
 app.use(express.static("public"));
@@ -45,6 +45,13 @@ app.post('/register', async (req, res) =>
         res.sendFile(`${__dirname}/public/error.html`);
         return ;
     }
+    let hashed;
+    bcrypt.hash(req.body.password, 7, (err, res)=>
+    {
+        hashed = res;
+    }
+    
+    )
     let user = await app.db.collection("users").findOne({username:req.body.username});
     let mail = await app.db.collection("users").findOne({email:req.body.email});
     if (mail || user)
@@ -52,7 +59,9 @@ app.post('/register', async (req, res) =>
         res.send(`user or email already exists. please try to <a href='regLog.html'>login</a>`);
         return ;
     }
-    const result = await app.db.collection("users").insertOne(req.body);
+    
+    const result = await app.db.collection("users").insertOne({email : req.body.email,
+         username : req.body.username, password : hashed});
     console.log("added");
     res.sendFile(`${__dirname}/public/index2.html`);
 });
@@ -73,8 +82,18 @@ app.post('/login', async (req, res) =>
     }
     console.log(req.body);
     let user = await app.db.collection("users").findOne({username:req.body.username});
-    if (user && user.password == req.body.password)
+    if (user)
     {
+        let s = true;
+        bcrypt.compare(user.password, req.body.password, (err, same)=>
+        {
+            s = same;
+        }
+        );
+        if (!s)
+        {
+            res.sendFile(`${__dirname}/public/error.html`);
+        }
      //   console.log(req.body.username);
       //  console.log(user);
        // console.log(req.body);
