@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register or login</title>
+    <style>
+        div{
+            display: flex;
+        }
+        section{
+            display: flex;
+            background-color:yellowgreen;
+            width:50vw;
+            height:40vh;
+            margin-top:10vh;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid red;
+        }
+        form input, form button{
+            display: flex;
+            flex-direction: column;
+            width:80%;
+            height:50%;
+            background-color:aquamarine;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <section>
+    <form action = "/register" method = "post">
+        <input type = "text" name = "email" placeholder="your email" required>
+        <input type = "password" name = "password" placeholder="password" required>
+        <input type = "text" name = "username" placeholder="user name" required>
+        <button type = "submit">register</button>
+    </form>
+    </section>
+    <section>    
+    <form action = "/login" method = "post">
+        <input type = "password" name = "password" placeholder="password" required>
+        <input type = "text" name = "username" placeholder="user name" required>
+        <input type = "text" name = "color" placeholder="enter your favourite color" required>
+        <button type = "submit">login</button>
+    </form>
+    </section>
+    </div>
+</body>
+</html>

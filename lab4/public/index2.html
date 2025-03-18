@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home page</title>
+</head>
+<body>
+    <h1>Welcome to home page </h1>
+    <script>
+        let cookies = document.cookie.split(";");
+        let d = {};
+        for (let i  in cookies)
+        {
+            let c = cookies[i].split("=");
+            c[0] = c[0].trim();
+            d[c[0]] = c[1].trim();
+        }
+        let div = document.createElement('div');
+        div.classList.add('UserName');
+        let p = document.createElement('p');
+        p.innerHTML = d['username'];
+        div.appendChild(p);
+        div.style.border = "1px solid red";
+        if (d['color'] == 'yellow')
+        {
+            div.style.backgroundColor = 'green';
+        }
+        else div.style.backgroundColor = "yellow";
+        document.body.appendChild(div);
+        if (d["color"])
+        document.body.style.backgroundColor = d["color"];
+    </script>
+    <div>
+        <a href = "regLog.html">login page </a>
+    </div>
+</body>
+</html>
