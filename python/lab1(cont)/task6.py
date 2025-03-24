@@ -22,7 +22,8 @@ def diagonalDifference(arr):
         left += arr[i][i]
         right += arr[i][n - i - 1]
     return abs(left - right)
-
+'''
+this part for the function to run on hacker rank
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
@@ -38,3 +39,4 @@ if __name__ == '__main__':
     fptr.write(str(result) + '\n')
 
     fptr.close()
+'''
