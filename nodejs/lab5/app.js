@@ -26,7 +26,7 @@ const io = socket(server, {
 
 io.on('connection', function(socket){
 
-    socket.on("send", function(user, msg)
+    socket.on("send", function(msg)
         {
             console.log("a massege sent");
             io.emit("send", `${msg}`);
