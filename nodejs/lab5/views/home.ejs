@@ -67,7 +67,7 @@
     <script>
         let sc = io("http://localhost:4002");
         let room = document.getElementById('chatroom');
-        sc.emit("send", "<%= username %>");
+     //   sc.emit("send", "<%= username %>");
         sc.on("send", function(msg)
         {
             let p = document.createElement('p');
@@ -82,7 +82,7 @@
             {
                 
                 console.log("done");
-                sc.emit("send", input.value);
+                sc.emit("send", "<%= username %> : " + input.value);
                 input.value = "";
             }
         }
