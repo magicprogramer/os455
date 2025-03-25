@@ -5,22 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home</title>
     <style>
-    button{
-        display : block;
-    }
-    section{
-        padding-left: 20vh;
-    }
-    textarea{
-        width:70vh;
-    }
-    button:hover{
-        background-color: goldenrod;
-    }
-    #chatroom{
-        border: 1px solid black;
-        width:100%;
-    }
+        *{
+            margin-top: 10px;
+        }
+        body{
+            display:flex;
+            justify-items: center;
+            justify-content: center;
+            background-color: beige;
+        }
+        body > section{
+            width:70%;
+        }
+        #chatroom{
+            background-color: cyan;
+            min-height: 50vh;
+        }
+        button{
+            display: block;
+        }
+        textarea{
+            justify-self: center;
+            min-height: 40vh;
+            width:80%;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +68,7 @@
         <section id = "chatroom">
             <h2 style = "text-align: center;">Chat Room</h2>
         </section>
-        <section>
+        <section id ="typing">
             <textarea>
 
             </textarea>
