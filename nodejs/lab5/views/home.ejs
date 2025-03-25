@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+    button{
+        display : block;
+    }
+    section{
+        padding-left: 20vh;
+    }
+    textarea{
+        width:70vh;
+    }
+    button:hover{
+        background-color: goldenrod;
+    }
+    </style>
+</head>
+<body>
+    <script>
+        function logout()
+        {
+            window.location.href = "/logout";
+        }
+   </script>
+    <section id = "parent">
+        <section>
+            <button onclick="logout()">
+                logout
+            </button>
+        </section>
+        <section>
+            <header style = "text-align: center;">welcome home, <%= username %> </header>
+        </section>
+        <section id = "form">
+            <form action = "/post" method = "post">
+                <textarea name = "content"></textarea>
+                <button type = "submit">post something</button>
+            </form>
+        </section>
+        <section>
+            <h3> read posts </h3>
+            <% for(let i = posts.length - 1; i >= 0; i--) { %>
+                <div class="post">
+                    <h3 class="username" style="text-align: center;"><%= posts[i].user %></h3>
+                    <h2><%= posts[i].header %></h2>
+                    <p><%= posts[i].content %></p>
+                </div>
+                <hr>
+            <% } %>
+            
+        </section>
+        <section id = "chatroom">
+            
+        </section>
+        <section>
+            <textarea>
+
+            </textarea>
+            <button onclick="send()">submit</button>
+        </section>
+    </section>
+    <script src="http://localhost:4002/socket.io/socket.io.js"></script>
+    <script>
+        let sc = io("http://localhost:4002");
+        let room = document.getElementById('chatroom');
+        
+        sc.on("send", function(msg)
+        {
+            let p = document.createElement('p');
+            p.innerHTML = msg;
+            room.append(p);
+        });
+        function send()
+        {
+            let input = document.getElementsByTagName('textarea')[0];
+            console.log("here");
+            if (input.value)
+            {
+                
+                console.log("done");
+                sc.emit("send", input.value);
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
