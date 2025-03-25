@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const cors = require('cors');
 app.use(cors({
-    origin: 'http://localhost:8003',
+    origin: '*',
     methods: ['GET', 'POST']
   }));
 const cookieParser = require("cookie-parser");
@@ -19,7 +19,7 @@ const http = require("http");
 const server = http.createServer(app);
 const io = socket(server, {
     cors: {
-        origin: 'http://localhost:8003',  // Allow frontend origin
+        origin: '*',  // Allow frontend origin
         methods: ['GET', 'POST']
     }
 });

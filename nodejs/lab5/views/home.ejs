@@ -63,11 +63,11 @@
             <button onclick="send()">submit</button>
         </section>
     </section>
-    <script src="http://localhost:4002/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script>
         let sc = io("http://localhost:4002");
         let room = document.getElementById('chatroom');
-        
+        sc.emit("send", "<%= username %>");
         sc.on("send", function(msg)
         {
             let p = document.createElement('p');
@@ -76,7 +76,7 @@
         });
         function send()
         {
-            let input = document.getElementsByTagName('textarea')[0];
+            let input = document.getElementsByTagName('textarea')[1];
             console.log("here");
             if (input.value)
             {
