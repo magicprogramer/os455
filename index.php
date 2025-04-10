@@ -10,7 +10,11 @@
         <div id="after_submit">
             <?php
                 require 'vendor/autoload.php';
-                if (isset($_POST['submit']))
+                if (isset($_POST['reset']))
+                {
+                    $name = $email = $message = null;
+                }
+                else if (isset($_POST['submit']))
                 {
                     $name = $_POST['name'];
                     $email = $_POST['email'];
@@ -77,12 +81,14 @@
             </div>
             <div class="row">
                 <label class="required" for="message">Your message:</label><br />
-                <textarea id="message" class="input" name="message" rows="7" cols="30"><?php $message ?></textarea><br />
+                <textarea id="message" class="input" name="message" rows="7" cols="30"><?php 
+                if (isset($message))
+                echo $message ?></textarea><br />
 
             </div>
 
             <input id="submit" name="submit" type="submit" value="Send email" />
-            <input id="clear" name="clear" type="reset" value="clear form" />
+            <input id="clear" name="clear" type="submit" value="clear form" />
 
         </form>
     </body>
