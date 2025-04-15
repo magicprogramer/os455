@@ -1,0 +1,18 @@
+{
+    "name": "ahmedezzat/os45",
+    "autoload": {
+        "psr-4": {
+            "Ahmedezzat\\Os45\\": "src/"
+        },
+        "files": [
+            "src/config.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "ahmed ezzat",
+            "email": "ahmedalahly800@gmail.com"
+        }
+    ],
+    "require": {}
+}
