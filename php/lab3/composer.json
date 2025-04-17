@@ -1,0 +1,19 @@
+{
+    "name": "ahmedezzat/os45",
+    "autoload": {
+        
+        "classmap": [
+            ["classes/"]
+        ],
+        "files": [
+            "src/config.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "ahmed ezzat",
+            "email": "ahmedalahly800@gmail.com"
+        }
+    ],
+    "require": {}
+}
