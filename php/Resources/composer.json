@@ -1,0 +1,22 @@
+{
+    "name": "ecc/resources",
+    "autoload": {
+        "psr-4": {
+            "Ecc\\Resources\\": "src/"
+        },
+        "classmap": [
+            "classes/"
+        ],
+        
+    "files": ["config.php"]
+    },
+    "authors": [
+        {
+            "name": "ahmed ezzat",
+            "email": "ahmedalahly800@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database" : "*"
+    }
+}
