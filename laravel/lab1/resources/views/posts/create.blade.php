@@ -3,6 +3,6 @@
 
 @section('content')
 <form action="{{ route('posts.store') }}" method="POST" class="needs-validation">
-    @include('posts._form', ['users' => $users])
+    @include('posts._form', ['user' => $user])
 </form>
 @endSection

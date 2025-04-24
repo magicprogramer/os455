@@ -35,10 +35,19 @@
                         </li>
                     </ul>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
+    @auth
+        <form method="POST" action="{{ route('logout') }}" class="d-inline">
+            @csrf
+            <button type="submit" class="nav-link btn btn-link text-dark" style="text-decoration: none;">
+                Logout
+            </button>
+        </form>
+    @else
+        <a class="nav-link" href="{{ route('login') }}">Login</a>
+    @endauth
+</li>
+
             </ul>
         </div>
     </div>

@@ -10,6 +10,8 @@
             <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Body</th>
+            
+            <th scope="col">User</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -23,6 +25,7 @@
                 </a>
             </td>
             <td>{{ substr($post['body'], 0, 50) . "...." }}</td>
+            <td>{{$post->user->name}} posts count : {{$post->user->posts_count}} </td>
             <td>
                 <a class="btn btn-info" href="{{ route('posts.edit' ,['post'=> $post['id']])}}">Edit</a>
                 <form class="form-inline" action="{{ route('posts.destroy' , ['post' => $post['id']]) }}" method="POST">

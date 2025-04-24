@@ -7,7 +7,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-
+use App\Events\PostAdded;
+use Illuminate\Support\Facades\Auth;
+use App\Events\PostDeleted;
 class PostController extends Controller
 {
     /**
@@ -15,7 +17,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view("posts.index", ['posts' =>Post::all()->where('enabled', true)]);
+        
+        return view("posts.index", ['posts' =>
+            Post::all()->where('enabled', true)->sortByDesc('created_at')]);
     }
 
     /**
@@ -23,8 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $users = User::select('id', 'name')->get();
-        return view("posts.create", ['users' => $users]);
+        //$users = User::select('id', 'name')->get();
+        $user = Auth::user();
+        return view("posts.create", ['user' => $user]);
     }
 
     /**
@@ -35,7 +40,7 @@ class PostController extends Controller
         //
         $post = new Post($request->only(['title', 'body', 'user_id']));
         $post->save();
-        
+        event(new PostAdded($post));
         return redirect()->route('posts.show', $post);
     }
 
@@ -44,8 +49,8 @@ class PostController extends Controller
      */
     public function show(string $post)
     {
-        $user = User::find(Post::find($post)->user_id);
-        return view("posts.show", ['post' =>Post::find($post), 'user' => $user]);
+        $post = Post::find($post);
+        return view("posts.show", ['post' =>$post, 'user' => $post->user]);
 
         
     }
@@ -55,9 +60,13 @@ class PostController extends Controller
      */
     public function edit(string $post)
     {
-        $users = User::select('id', 'name')->get();
+        if (Auth::user()->id != Post::find($post)->user_id)
+        {
+            abort(403);
+        }
+        $user =  Auth::user();
         $post = Post::find($post);
-        return view("posts.edit", ['post' => $post, 'users' => $users]);
+        return view("posts.edit", ['post' => $post, 'user' => $user]);
     }
 
     /**
@@ -77,7 +86,10 @@ class PostController extends Controller
      */
     public function destroy(string $post)
     {
-        Post::where('id', $post)->delete();
+        $post = Post::find($post);
+        $user = $post->user;
+        event(new PostDeleted($user));
+        $post->delete();
         return redirect()->route('posts.index');
     }
 }
