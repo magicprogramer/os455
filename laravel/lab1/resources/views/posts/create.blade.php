@@ -1,5 +1,8 @@
 @extends('layouts.main')
-@section('title', 'index')
+@section('title', "Create post")
+
 @section('content')
-{{$msg}}
-@endsection 
+<form action="{{ route('posts.store') }}" method="POST" class="needs-validation">
+    @include('posts._form', ['users' => $users])
+</form>
+@endSection

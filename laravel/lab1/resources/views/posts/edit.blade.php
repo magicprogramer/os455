@@ -1,5 +1,13 @@
 @extends('layouts.main')
-@section('title', "edit")
+@section('title', "Update post")
+
 @section('content')
-{{$msg}} : {{$id}}
-@endsection 
+<form action="{{ route('posts.update', ['post' => $post->id]) }}" method="POST" >
+    @method('PUT')
+    @include('posts._form')
+</form>
+@endSection
+
+@section('footer')
+
+@endsection
