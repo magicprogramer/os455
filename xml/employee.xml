@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="employee.css"?>
+<!DOCTYPE employees SYSTEM "employee.dtd">
+<employees>
+
+<employee name ="ahmed" e-mail = "ahmed@gmail.com" >
+    <phones>
+    <phone type = "home">
+    01226723732
+    </phone>
+    </phones>
+    <address>
+    <region>
+        middle east
+    </region>
+    <city>
+    alex
+    </city>
+    <country>
+    Egypt
+    </country>
+    <building_number>
+    
+    22
+    </building_number>
+    </address>
+
+</employee>
+
+<employee name ="ahmed2" e-mail = "ahmed@gmail.com" >
+    <phones>
+        <phone type = "home">
+        01326723732
+        </phone>
+        <phone type = "fax">
+        01326723732
+        </phone>
+    </phones>
+    <address>
+    <region>
+        middle east
+    </region>
+    <city>
+    cairo
+    </city>
+    <country>
+    Egypt
+    </country>
+    <building_number>
+    
+    12
+    </building_number>
+    </address>
+
+</employee>
+
+</employees>

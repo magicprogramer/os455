@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+<info 
+location="alex"
+librarian="ahmed"
+description="this is a desc">
+<book>
+<title>
+title 1
+</title>
+<isbn>
+234
+</isbn>
+<author>
+alex
+</author>
+<preface>
+</preface>
+<part>
+<title>
+part 1
+</title>
+<chapter>
+<title>
+chapter 1</title>
+<summary>
+this is chapter summary
+</summary>
+<section>
+<p>
+this is section 1.1
+</p>
+</section>
+
+</chapter>
+</part>
+</book>
+</info>
+</library>
