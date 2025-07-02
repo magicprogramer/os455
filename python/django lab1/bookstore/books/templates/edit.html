@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.2/dist/full.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+</head>
+<body>
+    <div class="card bg-base-100 w-96 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title">Edit</h2>
+          <form action="{% url 'edit' book.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Name</span>
+              </label>
+              <input type="text" placeholder="name" class="input input-bordered" name="name" value="{{book.name}}"/>
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Price</span>
+              </label>
+              <input type="text" placeholder="price" class="input input-bordered" name="price" value="{{book.price}}"/>
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Description</span>
+              </label>
+              <input type="text" placeholder="description" class="input input-bordered" name="description" value="{{book.description}}"/>
+            </div>
+            <div class="form-control mt-6">
+              <button class="btn btn-primary">Update</button>
+            </div>
+          </form>
+        </div>
+      </div>
+</body>
+</html>
