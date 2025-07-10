@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Book</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.2/dist/full.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="flex justify-center items-center min-h-screen bg-base-200">
+  <div class="card bg-base-100 w-96 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Add Book</h2>
+      <form action="{% url 'add' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Title</span>
+          </label>
+          <input type="text" placeholder="Title" class="input input-bordered" name="title" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Rate</span>
+          </label>
+          <input type="text" placeholder="Rate (e.g., 4.5)" class="input input-bordered" name="rate" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Description</span>
+          </label>
+          <input type="text" placeholder="Description" class="input input-bordered" name="desc" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Author Title</span>
+          </label>
+          <input type="text" placeholder="Author Title" class="input input-bordered" name="author_title" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Book Title (for ISBN)</span>
+          </label>
+          <input type="text" placeholder="Book Title for ISBN" class="input input-bordered" name="isbn_book_title" />
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Categories</span>
+          </label>
+          <select name="categories" class="input input-bordered" multiple>
+            {% for category in categories %}
+              <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% if error %}
+          <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+        <div class="form-control mt-6">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

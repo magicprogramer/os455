@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.2/dist/full.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="flex justify-center items-center min-h-screen bg-base-200">
+  <div class="card bg-base-100 w-96 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title">Login</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-control mt-6">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+      <p>Don't have an account? <a href="{% url 'signup' %}" class="link">Sign Up</a></p>
+    </div>
+  </div>
+</body>
+</html> 
